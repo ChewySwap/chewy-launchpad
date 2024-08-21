@@ -1,0 +1,23 @@
+{
+    "short_name": "Chewy Launchpad",
+    "name": "Chewy Launchpad",
+    "description": "Launch projects, stake and farm tokens, stake your NFTs and much more on Chewy Launchpad!",
+    "homepage_url": "https://pad.chewy.build",
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#1FC7D4",
+    "background_color": "#ffffff",
+    "orientation": "portrait",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "type": "image/x-icon",
+        "sizes": "16x16"
+      },
+      {
+        "src": "applogo.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      }
+    ]
+  }

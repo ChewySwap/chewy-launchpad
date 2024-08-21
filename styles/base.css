@@ -1,0 +1,824 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .rainbow-wrapper {
+    @apply relative bg-gradient-to-b from-slate-700 to-slate-800 rounded-xl overflow-hidden;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .rainbow-wrapper::before {
+    background: conic-gradient(#FF2E2E,
+        #FF831E,
+        #FCFF51,
+        #58FF57,
+        #575FFF,
+        #D257FF,
+        #FF57E5,
+        #FF1556);
+
+    @apply absolute h-[3000%] w-[3000%] content-[''] animate-[spin_2s_linear_infinite];
+  }
+
+  .rainbow-content {
+    @apply absolute w-[96%] h-[95%] m-0 p-0 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl;
+  }
+
+  .rainbow-content-lg {
+    @apply absolute w-[99%] h-[94%] m-0 p-0 bg-gradient-to-b from-slate-800 to-slate-900 rounded-xl;
+  }
+
+  .cards-nftstake {
+    @apply drop-shadow-sm bg-gradient-to-r from-black/90 via-black to-black/90 bg-opacity-0
+  }
+
+  .cards-nftstakeinfo {
+    @apply drop-shadow-sm hover:drop-shadow-lg bg-gradient-to-r from-black/90 via-black to-black/90 bg-opacity-0
+  }
+
+  .cards-nftpoolpreview {
+    @apply drop-shadow-sm hover:drop-shadow-lg bg-gradient-to-r from-black/90 via-black to-black/90 bg-opacity-0
+  }
+
+  .cards-modal {
+    @apply drop-shadow-md bg-gradient-to-r from-slate-700/90 via-slate-800/90 to-slate-700/90 bg-opacity-0
+  }
+
+  .cards-farm {
+    @apply drop-shadow-sm border-slate-900/25 border-x-1 bg-gradient-to-b from-slate-800/80 to-sky-900/90 bg-opacity-0
+  }
+}
+
+@layer components {
+  @keyframes changeBorderColor {
+    0% {
+      border-color: #ee5849;
+      /* Initial color */
+    }
+
+    25% {
+      border-color: #ffcc00;
+      /* Change color at 25% */
+    }
+
+    50% {
+      border-color: #00cc66;
+      /* Change color at 50% */
+    }
+
+    75% {
+      border-color: #3399ff;
+      /* Change color at 75% */
+    }
+
+    100% {
+      border-color: #ee5849;
+      /* Back to initial color */
+    }
+  }
+
+
+  @keyframes changeBorderColor2 {
+    0% {
+      border-color: rgb(0, 131, 50);
+      /* Initial color */
+    }
+
+    25% {
+      border-color: #ff5e00;
+      /* Change color at 25% */
+    }
+
+    50% {
+      border-color: #0052cc;
+      /* Change color at 50% */
+    }
+
+    75% {
+      border-color: #c20563;
+      /* Change color at 75% */
+    }
+
+    100% {
+      border-color: rgb(114, 95, 55);
+      /* Back to initial color */
+    }
+  }
+
+  @keyframes rainbow-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes animatedgradient {
+    0% {
+      background-size: 0% 0%;
+      background-repeat: no-repeat;
+      background-position-y: 0%;
+      background-position-x: 0%;
+      rotate: 0deg;
+    }
+
+    50% {
+      background-size: 100% 100%;
+      background-position-x: 500%;
+      background-position-y: 500%;
+      background-repeat: no-repeat;
+      rotate: 1deg;
+    }
+
+    100% {
+      background-size: 0% 0%;
+      background-position-x: 0%;
+      background-position-y: 0%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  @property --bg-angle {
+    inherits: false;
+    initial-value: 0deg;
+    syntax: "<angle>";
+  }
+
+  @property --bg-angle2 {
+    inherits: false;
+    initial-value: 360deg;
+    syntax: "<angle>";
+  }
+
+  @keyframes spinback {
+    from {
+      --a: 20deg;
+      --l: 10%;
+      --c: red;
+    }
+
+    50% {
+      --c: pink;
+    }
+
+    to {
+      --a: 300deg;
+      --l: 40%;
+      --c: green;
+    }
+  }
+
+  :root {
+    --bg-color: #151320;
+    --conic-gradient: conic-gradient(#FF2E2E,
+        #FF831E,
+        #FCFF51,
+        #58FF57,
+        #575FFF,
+        #D257FF,
+        #FF57E5,
+        #FF1556);
+
+    --gradBorderWidth: 1px;
+    --gradBorderRadius: 4px;
+    --gradWidth: 96px;
+    --gradHeight: 32;
+    --gradHue: 300;
+    --gradHueOffset: 120;
+    --gradLevel: 100%;
+    --gradBright: 75%;
+    --borderGradient: conic-gradient(#FF2E2E,
+        #FF831E,
+        #FCFF51,
+        #58FF57,
+        #575FFF,
+        #D257FF,
+        #FF57E5,
+        #FF1556);
+    --borderGradient2: radial-gradient(box, hsl(0, 100%, var(--gradBright)), hsl(30, 100%, var(--gradBright)), hsl(45, 100%, var(--gradBright)), hsl(60, 100%, var(--gradBright)), hsl(70, 100%, var(--gradBright)), hsl(90, 100%, var(--gradBright)), hsl(120, 100%, var(--gradBright)), hsl(180, 100%, var(--gradBright)), hsl(200, 100%, var(--gradBright)), hsl(240, 100%, var(--gradBright)), hsl(270, 100%, var(--gradBright)), hsl(300, 100%, var(--gradBright)), hsl(360, 100%, var(--gradBright)));
+    --duration: 5s;
+    --fraction: calc(var(--gradWidth) / (var(--gradWidth) + var(--gradHeight)));
+  }
+
+  #box {
+    width: var(--gradWidth);
+    height: var(--gradHeight);
+    border-radius: var(--gradBorderRadius);
+    -webkit-mask: -webkit-gradient(linear,
+        left top,
+        left bottom,
+        from(#fff),
+        to(#fff)) top,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) bottom,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) left,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) right;
+    -webkit-mask: linear-gradient(#fff, #fff) top,
+      linear-gradient(#fff, #fff) bottom, linear-gradient(#fff, #fff) left,
+      linear-gradient(#fff, #fff) right;
+    mask: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) top,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) bottom,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) left,
+      -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) right;
+    mask: linear-gradient(#fff, #fff) top, linear-gradient(#fff, #fff) bottom,
+      linear-gradient(#fff, #fff) left, linear-gradient(#fff, #fff) right;
+    -webkit-mask-size: 100% var(--gradBorderWidth), 100% var(--gradBorderWidth),
+      var(--gradBorderWidth) 100%, var(--gradBorderWidth) 100%;
+    mask-size: 100% var(--gradBorderWidth), 100% var(--gradBorderWidth),
+      var(--gradBorderWidth) 100%, var(--gradBorderWidth) 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    display: none;
+  }
+
+  #circle {
+    width: var(--gradWidth);
+    height: var(--gradWidth);
+    border-radius: 50%;
+    -webkit-mask-image: radial-gradient(box farthest-side at center,
+        transparent calc(var(--gradWidth) * 0.5 - var(--gradBorderWidth)),
+        white calc(var(--gradWidth) * 0.5 - var(--gradBorderWidth)));
+    mask-image: radial-gradient(box farthest-side at center,
+        transparent calc(var(--gradWidth) * 0.5 - var(--gradBorderWidth)),
+        white calc(var(--gradWidth) * 0.5 - var(--gradBorderWidth)));
+    -webkit-mask-size: 100% 100%;
+    mask-size: 80% 80%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    display: none;
+  }
+
+  .gradient-border {
+    box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5);
+    background: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: transform .3s ease;
+  }
+
+  .gradient-border:after {
+    content: "Claim All";
+    position: absolute;
+    top: calc(-1 * var(--gradBorderWidth));
+    left: calc(-1 * var(--gradBorderWidth));
+    height: calc(100% + var(--gradBorderWidth) * 2);
+    width: calc(100% + var(--gradBorderWidth) * 2);
+    background: var(--borderGradient);
+    border-radius: calc(2 * var(--gradBorderRadius));
+    -webkit-animation: animatedgradient var(--duration) ease-in-out infinite;
+    animation: rainbow-spin var(--duration) ease-in-out infinite;
+    background-size: 100% 100%;
+  }
+
+  @-webkit-keyframes animatedgradient {
+    0% {
+      background-position: 0% 0%;
+    }
+
+    calc(0.5 * var(--fraction)) {
+      background-position: 100% 0%;
+    }
+
+    50% {
+      background-position: 100% 100%;
+    }
+
+    calc(0.5 + 0.5 * var(--fraction)) {
+      background-position: 0% 100%;
+    }
+
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  @keyframes animatedgradient {
+    0% {
+      background-position: 0% 0%;
+    }
+
+    25% {
+      background-position: 100% 0%;
+    }
+
+    50% {
+      background-position: 100% 100%;
+    }
+
+    75% {
+      background-position: 0% 100%;
+    }
+
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .btn-rainbow {
+    background-color: red;
+    box-shadow: 0 1em 1em rgba(0, 0, 0, 0.5);
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: transform .3s ease;
+  }
+
+
+  .btn-rainbow::before {
+    content: '';
+    position: absolute;
+    width: 110%;
+    height: 350%;
+    background: var(--conic-gradient);
+  }
+
+  .btn-rainbow::after {
+    content: 'Claim All';
+    position: absolute;
+    background-color: var(--bg-color);
+    width: 96%;
+    height: 86%;
+    border-radius: .4em;
+
+    font-size: 2rem;
+    color: #fff;
+    font-weight: 500;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-rainbow:hover::before {
+    animation: rainbow-spin 1.5s infinite linear;
+  }
+
+
+  .spinny-rainbow {
+    /* add the animation, but pause it by default */
+
+    /**
+    * Using `background-origin` we can create a “border” using two gradients. And to
+    * make the gradients better-looking, we use OKLCH.
+    *
+    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin
+    * @see https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl
+    */
+    background:
+      /* Background colors don’t work with `background-origin`, so use a gradient. */
+      linear-gradient(to bottom,
+        oklch(0.1 0.2 240 / 0.95),
+        oklch(0.1 0.2 240 / 0.95)) padding-box,
+      /* ends at inner border edges */
+      conic-gradient(from var(--bg-angle) in oklch longer hue,
+        oklch(0.85 0.37 0) 0 0) border-box;
+    /* extends to outer border edges */
+
+    /* a clear border lets the background gradient shine through */
+    border: 3.5px solid transparent;
+    transition: --bg-angle 1500ms, --bg-angle2 1500ms;
+    animation: animatedgradient 2s infinite linear;
+  }
+
+  .spinny-rainbow:hover {
+    background:
+      /* Background colors don’t work with `background-origin`, so use a gradient. */
+      linear-gradient(to bottom,
+        oklch(0.1 0.2 240 / 0.95),
+        oklch(0.1 0.2 240 / 0.95)) padding-box,
+      /* ends at inner border edges */
+      conic-gradient(from var(--bg-angle2) in oklch longer hue,
+        oklch(0.85 0.37 0) 0 0) border-box;
+    /* extends to outer border edges */
+  }
+
+
+
+  .gradmain::before {
+    position: absolute;
+    inset: -10px 140px;
+    background: linear-gradient(315deg, #00ccff, #d400d4);
+    transition: 0.5s;
+    animation: animate 4s linear infinite;
+    overflow: hidden;
+  }
+
+  .gradmain:hover::before {
+    inset: -20 0px;
+  }
+
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    0% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .gradmain::after {
+    content: 'Claim All';
+    position: absolute;
+    inset: 6px;
+    background: #162052;
+    border-radius: 10%;
+    z-index: 100;
+  }
+
+  .gradient-border {
+    --gradBorderWidth: 3px;
+    --radius: 24px;
+    border: var(--border-width) solid transparent;
+    background: #1D1F20;
+    background-image: conic-gradient(from var(--rotate), #79dbd2, #45e1e5, #0052ff, #b82ea4, #ff9533, #7fd057);
+    position: relative;
+    border-radius: var(--radius);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--gradBorderWidth));
+    left: calc(-1 * var(--gradBorderWidth));
+    height: calc(100% + var(--gradBorderWidth) * 2);
+    width: calc(100% + var(--gradBorderWidth) * 2);
+    background: conic-gradient(from var(--rotate), #79dbd2, #45e1e5, #0052ff, #b82ea4, #ff9533, #7fd057);
+    border-radius: calc(2 * var(--gradBorderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 300% 300%;
+  }
+
+  .stakeMainDiv {
+    background-color: black;
+    background: url('/images/bg.webp') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .contentDiv {
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    height: max-content;
+    overflow: hidden;
+  }
+
+  .approveBtns {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    margin-top: 2%;
+  }
+
+  .approveBtns1 {
+    border: 4px solid black;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 20px;
+    font-size: 23px;
+    font-family: 'Russo One', sans-serif;
+    width: 270px;
+    transition: transform .3s;
+    background-color: #0a74ca;
+  }
+
+  .boardmain {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-bottom: 3%;
+  }
+
+  .boardmainmd {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+
+  .board {
+    margin-bottom: 5%;
+    padding: 35px;
+    border: #e02712 5px solid;
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 90%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    animation: changeBorderColor 5s infinite alternate;
+  }
+
+  .boardmd {
+    margin-bottom: 1px;
+    border: #e02712 7px solid;
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .boardpics {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    margin-bottom: 8%;
+  }
+
+  .stakeT {
+    color: #000000;
+    font-family: 'Passion One', sans-serif;
+    font-size: 25px;
+    font-weight: 1000;
+    text-align: center;
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+
+  .nameclaim2 {
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+    font-size: 13px;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+  }
+
+  .markbarmd {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 16px;
+  }
+
+  .markbarmain {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .markbar {
+    margin-top: 1%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    width: 100%;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+  }
+
+  .markbar2 {
+    flex-flow: column nowrap;
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+  }
+
+  .markbarconmd {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .markbarcon {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding: 1px;
+    margin-bottom: 10px;
+  }
+
+  .nftImgLogo {
+    width: 80px;
+    height: 80px;
+    margin-top: 20%;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    display: flex;
+
+    margin-bottom: 2%;
+  }
+
+  .num2 {
+    font-size: 18px;
+    color: #e02712;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .name2 {
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .tokenIds2 {
+    display: flex;
+    justify-content: center;
+    color: white;
+    flex-flow: row wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+  }
+
+  .nftthumb {
+    width: 100%;
+  }
+
+  .nftthumbselect {
+    width: 100%;
+    opacity: 0.6;
+    background: #C04848;
+    /* fallback for old browsers */
+    background: linear-gradient(rgba(255, 242, 2, 0.8), rgba(0, 255, 26, 0.8)), url("/images/check.png");
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(rgba(255, 242, 2, 0.8), rgba(0, 255, 26, 0.8)), url("/images/check.png");
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .stakeimg {
+    margin-top: auto;
+    margin-bottom: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .idText {
+    font-weight: 800;
+    background-color: #ffffff;
+    opacity: 0.95;
+    font-size: large;
+  }
+
+  .stakeimgselect {
+    background: #C04848;
+    /* fallback for old browsers */
+    background: url("/images/check.png");
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: url("/images/check.png");
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: auto;
+    margin-bottom: 14px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .wallet3 {
+    background-color: black;
+    border: solid 3px;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    transition: transform .5s;
+    z-index: 1;
+    margin-bottom: 10%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    animation: changeBorderColor2 5s infinite alternate;
+  }
+
+  .wallet3:hover {
+    cursor: pointer;
+    cursor: pointer;
+  }
+
+  .wallet3::after {
+    transition: all 0.8s
+  }
+
+  .boxWrap2Footer {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 51%, rgba(0, 0, 0, 0.8) 100%), url('/images/dustbg.svg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .footer {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    background-color: rgba(102, 102, 102, 0);
+    width: 100%;
+  }
+
+  .copyright {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .logoF img {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 5px;
+    justify-content: center;
+    display: flex;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .logoF:hover img {
+    transition: all 0.1s ease-in-out;
+    transform: scale(1.1);
+  }
+
+  .footer2 {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-flow: column nowrap;
+  }
+
+  .footerImg {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .selectedShadow {
+    box-shadow: 0px 0px 11px 1px #ED8936
+  }
+
+}
